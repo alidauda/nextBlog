@@ -1,14 +1,15 @@
-const router = require("express").Router();
-import express, { Request, Response, response } from "express";
-import Blog from "../model/schema";
+const router = require('express').Router();
+import express, { Request, Response, response } from 'express';
+import Blog from '../model/schema';
 
-router.get("/", (req: Request, res: Response) => {
-  res.json({ message: "Please Like the Videdwadawdo!" });
+router.get('/', (req: Request, res: Response) => {
+  res.json({ message: 'Please Like the Videdwadawdo!' });
 });
 
-router.post("/addblog", async (req: Request, res: Response) => {
+router.post('/addblog', async (req: Request, res: Response) => {
   const { username, title, description } = req.body;
-  console.log(req.body)
+  console.log(req.body);
+  res.json(req.body);
   // try {
   //   const newBlog = new Blog({
   //     username,
@@ -26,13 +27,13 @@ router.post("/addblog", async (req: Request, res: Response) => {
   // }
 });
 
-router.get("/allblogs", async (req: Request, res: Response) => {
+router.get('/allblogs', async (req: Request, res: Response) => {
   const allBlogs = await Blog.find({});
   res.status(200).json(allBlogs);
 });
 
-router.delete("/allblogs/:id", async (req: Request, res: Response) => {
+router.delete('/allblogs/:id', async (req: Request, res: Response) => {
   const deleteBlog = await Blog.findByIdAndDelete(req.params.id);
-  res.status(200).json({ message: "delete sucesfful" });
+  res.status(200).json({ message: 'delete sucesfful' });
 });
 module.exports = router;
